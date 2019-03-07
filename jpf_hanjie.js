@@ -61,9 +61,36 @@ function init() {
       document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
 
       // Inserts the HTML code for the first puzzle table
-      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Raiting, puzzle1);
+      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
+
+      //add event handlers for the puzzle buttons.
+      var puzzleButtons = document.getElementsByClassName("puzzles");
+      for (var i = 0; i < puzzleButtons.length; i++) {
+            puzzleButtons[i].onclick = swapPuzzle;
+      }
 }
 
+function swapPuzzle(e) {
+      // retrieve the ID of the clicked button.
+      var puzzleID = e.target.id;
+
+      //Retrieve the value of the clicked button.
+      var puzzleTitle = e.target.value;
+      document.getElementById("puzzleTitle").innerHTML = puzzleTitle;
+
+      switch (puzzleID) {
+            case "puzzle1":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
+                  break;
+            case "puzzle2":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle2Hint, puzzle2Rating, puzzle2);
+                  break;
+            case "puzzle3":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle3Hint, puzzle3Rating, puzzle3);
+                  break;
+      }
+
+}
 
 
 
